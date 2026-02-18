@@ -1,0 +1,233 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowAllServicesBaseline",
+      "Effect": "Allow",
+      "Action": "*",
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenyIAMPrivilegeEscalation",
+      "Effect": "Deny",
+      "Action": [
+        "iam:CreateUser",
+        "iam:CreateRole",
+        "iam:CreateGroup",
+        "iam:CreatePolicy",
+        "iam:CreatePolicyVersion",
+        "iam:SetDefaultPolicyVersion",
+        "iam:AttachUserPolicy",
+        "iam:AttachRolePolicy",
+        "iam:AttachGroupPolicy",
+        "iam:PutUserPolicy",
+        "iam:PutRolePolicy",
+        "iam:PutGroupPolicy",
+        "iam:AddUserToGroup",
+        "iam:UpdateAssumeRolePolicy",
+        "iam:CreateLoginProfile",
+        "iam:UpdateLoginProfile",
+        "iam:CreateAccessKey",
+        "iam:CreateServiceSpecificCredential",
+        "iam:DeactivateMFADevice",
+        "iam:DeleteVirtualMFADevice",
+        "iam:EnableMFADevice",
+        "iam:ResyncMFADevice",
+        "iam:DeleteUser",
+        "iam:DeleteRole",
+        "iam:DeleteGroup",
+        "iam:DeletePolicy",
+        "iam:DeleteUserPolicy",
+        "iam:DeleteRolePolicy",
+        "iam:DeleteGroupPolicy",
+        "iam:DetachUserPolicy",
+        "iam:DetachRolePolicy",
+        "iam:DetachGroupPolicy",
+        "iam:UpdateUser",
+        "iam:UpdateRole",
+        "iam:UpdateGroup"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenyPermissionBoundaryTampering",
+      "Effect": "Deny",
+      "Action": [
+        "iam:DeleteUserPermissionsBoundary",
+        "iam:DeleteRolePermissionsBoundary",
+        "iam:PutUserPermissionsBoundary",
+        "iam:PutRolePermissionsBoundary"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenyIdentityProviderManipulation",
+      "Effect": "Deny",
+      "Action": [
+        "iam:CreateSAMLProvider",
+        "iam:DeleteSAMLProvider",
+        "iam:UpdateSAMLProvider",
+        "iam:CreateOpenIDConnectProvider",
+        "iam:DeleteOpenIDConnectProvider",
+        "iam:AddClientIDToOpenIDConnectProvider",
+        "iam:RemoveClientIDFromOpenIDConnectProvider"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenySecurityServicesTampering",
+      "Effect": "Deny",
+      "Action": [
+        "cloudtrail:DeleteTrail",
+        "cloudtrail:StopLogging",
+        "cloudtrail:UpdateTrail",
+        "cloudtrail:PutEventSelectors",
+        "guardduty:DeleteDetector",
+        "guardduty:DisableOrganizationAdminAccount",
+        "guardduty:DisassociateFromAdministratorAccount",
+        "guardduty:DisassociateMembers",
+        "guardduty:DeleteMembers",
+        "guardduty:UpdateDetector",
+        "guardduty:StopMonitoringMembers",
+        "guardduty:DeleteIPSet",
+        "guardduty:DeleteThreatIntelSet",
+        "config:DeleteConfigRule",
+        "config:DeleteConfigurationRecorder",
+        "config:DeleteDeliveryChannel",
+        "config:StopConfigurationRecorder",
+        "access-analyzer:DeleteAnalyzer",
+        "securityhub:DisableSecurityHub",
+        "securityhub:DeleteMembers",
+        "securityhub:DisassociateMembers",
+        "securityhub:BatchDisableStandards",
+        "inspector2:Disable",
+        "detective:DeleteGraph"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenyDataExfiltration",
+      "Effect": "Deny",
+      "Action": [
+        "s3:PutBucketPolicy",
+        "s3:PutBucketAcl",
+        "s3:PutObjectAcl",
+        "s3:PutBucketPublicAccessBlock",
+        "s3:PutAccountPublicAccessBlock",
+        "ec2:ModifySnapshotAttribute",
+        "ec2:ModifyImageAttribute",
+        "rds:ModifyDBSnapshotAttribute",
+        "rds:ModifyDBClusterSnapshotAttribute",
+        "ram:CreateResourceShare",
+        "ram:UpdateResourceShare",
+        "ram:AcceptResourceShareInvitation"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenyAccountAndOrgActions",
+      "Effect": "Deny",
+      "Action": [
+        "organizations:*",
+        "account:*",
+        "aws-portal:*",
+        "billing:*",
+        "ce:*",
+        "cur:*",
+        "purchase-orders:*",
+        "budgets:ModifyBudget",
+        "budgets:DeleteBudget"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenyNetworkSecurityTampering",
+      "Effect": "Deny",
+      "Action": [
+        "ec2:CreateVpcPeeringConnection",
+        "ec2:AcceptVpcPeeringConnection",
+        "ec2:CreateTransitGateway",
+        "ec2:CreateTransitGatewayPeeringAttachment",
+        "ec2:AcceptTransitGatewayPeeringAttachment",
+        "ec2:CreateCustomerGateway",
+        "ec2:CreateVpnConnection",
+        "ec2:CreateVpnGateway",
+        "ec2:DeleteFlowLogs",
+        "ec2:DisableVpcClassicLink",
+        "directconnect:*",
+        "globalaccelerator:Create*",
+        "globalaccelerator:Update*"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenyEncryptionTampering",
+      "Effect": "Deny",
+      "Action": [
+        "kms:DisableKey",
+        "kms:ScheduleKeyDeletion",
+        "kms:PutKeyPolicy",
+        "kms:RevokeGrant",
+        "kms:DisableKeyRotation",
+        "kms:CreateGrant"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenyLoggingTampering",
+      "Effect": "Deny",
+      "Action": [
+        "logs:DeleteLogGroup",
+        "logs:DeleteLogStream",
+        "logs:PutRetentionPolicy",
+        "logs:DeleteRetentionPolicy",
+        "logs:AssociateKmsKey",
+        "logs:DisassociateKmsKey"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenySSOAndDirectoryManipulation",
+      "Effect": "Deny",
+      "Action": [
+        "sso:*",
+        "sso-admin:*",
+        "ds:*"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenyDomainHijacking",
+      "Effect": "Deny",
+      "Action": [
+        "route53domains:TransferDomain",
+        "route53domains:DeleteDomain",
+        "route53domains:DisableDomainTransferLock",
+        "route53domains:TransferDomainToAnotherAwsAccount"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenySecretsAndCredentialAbuse",
+      "Effect": "Deny",
+      "Action": [
+        "secretsmanager:DeleteSecret",
+        "secretsmanager:PutResourcePolicy",
+        "ssm:DeleteParameter",
+        "ssm:DeleteParameters",
+        "ssm:PutParameter"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenyMarketplaceAndSupport",
+      "Effect": "Deny",
+      "Action": [
+        "aws-marketplace:Subscribe",
+        "aws-marketplace:Unsubscribe",
+        "aws-marketplace-management:*"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
